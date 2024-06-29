@@ -15,15 +15,16 @@ var is_wall_jumping = false
 @export var normal_texture: Texture2D
 @export var falling_texture: Texture2D
 @export var stuckwall_texture: Texture2D
-var canDoubleJump = false
+var maxDoubleJumpCount = 1
+var doublejumpCount = 0;
 func _physics_process(delta):
 	# Check if the player is touching a wall.
 	var is_touching_wall = raycastRight.is_colliding() or raycastLeft.is_colliding()
-	
+	print(doublejumpCount,"/",maxDoubleJumpCount)
 	sprite.flip_v = false
 	# Add the gravity.
 	if is_touching_wall and not is_on_floor():
-		canDoubleJump = true
+		doublejumpCount = 0
 		sprite.texture = stuckwall_texture
 		sprite.flip_h = raycastLeft.is_colliding()
 		# Reduce gravity when touching a wall to simulate sliding.
@@ -35,13 +36,13 @@ func _physics_process(delta):
 	else:
 		velocity.y += gravity * delta
 		sprite.texture = falling_texture
-		if canDoubleJump:
+		if doublejumpCount < maxDoubleJumpCount:
 			if Input.is_action_just_pressed("ui_left") and not raycastRight.is_colliding():
 				velocity = Vector2(-WALL_JUMP_HORIZONTAL_VELOCITY, JUMP_VELOCITY)
-				canDoubleJump = false
+				doublejumpCount += 1
 			elif Input.is_action_just_pressed("ui_right") and not raycastLeft.is_colliding():
 				velocity = Vector2(WALL_JUMP_HORIZONTAL_VELOCITY, JUMP_VELOCITY)
-				canDoubleJump = false
+				doublejumpCount += 1
 		
 			
 

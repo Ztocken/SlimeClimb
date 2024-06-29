@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dwajgujjqv2jc"]
 
-[ext_resource type="Texture2D" uid="uid://qtys4skgbg5k" path="res://art/slimbclimb-art.png" id="1_1kb2o"]
+[ext_resource type="Texture2D" uid="uid://cfquj2vs6m5fr" path="res://art/slimbclimb-art.png" id="1_1kb2o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hee4u"]
 size = Vector2(16, 16)
