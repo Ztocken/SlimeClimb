@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://onx4sjhw5caw"]
+
+[ext_resource type="Texture2D" uid="uid://cfquj2vs6m5fr" path="res://art/slimbclimb-art.png" id="1_8ahhn"]
+[ext_resource type="Script" path="res://assets/World/Tower/Spikes/spikes.gd" id="1_8uh8g"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ktn7w"]
+size = Vector2(7, 13)
+
+[node name="Spikes" type="Node2D"]
+script = ExtResource("1_8uh8g")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_8ahhn")
+region_enabled = true
+region_rect = Rect2(0, 64, 16, 16)
+
+[node name="Area2D" type="Area2D" parent="."]
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-4.5, 0.5)
+shape = SubResource("RectangleShape2D_ktn7w")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
