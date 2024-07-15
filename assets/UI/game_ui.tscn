@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://32g5rkvy6eqp"]
+
+[ext_resource type="PackedScene" uid="uid://bapvo3efatkf1" path="res://assets/UI/Timer/timer.tscn" id="1_rjs4p"]
+
+[node name="gameui" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 68.0
+offset_bottom = 50.0
+
+[node name="Timer" parent="VBoxContainer" instance=ExtResource("1_rjs4p")]
+layout_mode = 2

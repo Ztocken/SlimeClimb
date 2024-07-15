@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Player
 
 const JUMP_VELOCITY = -300.0
 const WALL_JUMP_HORIZONTAL_VELOCITY = 200.0  # Horizontal velocity for wall jumps
@@ -33,10 +34,8 @@ func _physics_process(delta):
 		# Stop the player from sliding up apply normal gravity on impact.
 		if velocity.y < 1:
 			CalculateGravity(gravity, delta)
-		else:
-			# Reduce gravity when touching a wall to simulate sliding.
+		else: 
 			CalculateGravity(gravity / wallSlideMod, delta)
-			
 		# Check if player jumpls from wall
 		CheckPlayerInputWallJump(false, WALL_JUMP_HORIZONTAL_VELOCITY)
 	
@@ -68,4 +67,5 @@ func CheckPlayerInputWallJump(useDoubleJump, horizontalJumpVelocity):
 			velocity = Vector2(horizontalJumpVelocity, JUMP_VELOCITY)
 			if useDoubleJump:
 				doublejumpCount += 1
-
+func Hit():
+	get_tree().reload_current_scene()

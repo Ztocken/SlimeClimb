@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://bapvo3efatkf1"]
+
+[ext_resource type="Script" path="res://assets/UI/Timer/timer.gd" id="1_57wyx"]
+[ext_resource type="Texture2D" uid="uid://k646qmx8sux7" path="res://assets/UI/Timer/timer-art.png" id="1_qang3"]
+
+[node name="Timer" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 73.0
+offset_bottom = 24.0
+script = ExtResource("1_57wyx")
+maxTimeSeconds = 95
+
+[node name="Timer" type="HBoxContainer" parent="."]
+offset_right = 68.0
+offset_bottom = 23.0
+
+[node name="TimerTexture" type="TextureRect" parent="Timer"]
+layout_mode = 2
+texture = ExtResource("1_qang3")
+expand_mode = 3
+stretch_mode = 3
+
+[node name="CountDown" type="Label" parent="Timer"]
+modulate = Color(1, 0.92549, 0.839216, 1)
+self_modulate = Color(1, 0.92549, 0.839216, 1)
+layout_mode = 2
+text = "00:00"
