@@ -14,7 +14,7 @@ func _ready():
 func _process(delta):
 	lastTickTime += delta
 	if lastTickTime >= 1.0:
-		timeRemaining -= lastTickTime
+		timeRemaining -= 1
 		lastTickTime = 0
 		UpdateTimer(timeRemaining)
 	pass
