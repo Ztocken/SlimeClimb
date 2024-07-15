@@ -8,7 +8,7 @@ const HORIZONTAL_JUMP_VELOCITY = 150.0
 @onready var raycastRight = $RayCast2DRight
 @onready var raycastLeft = $RayCast2DLeft
 @onready var sprite = $Sprite2D
-
+@onready var score = $"../CanvasLayer/Control/VBoxContainer/Score"
 @export var normal_texture: Texture2D
 @export var falling_texture: Texture2D
 @export var stuckwall_texture: Texture2D
@@ -69,3 +69,6 @@ func CheckPlayerInputWallJump(useDoubleJump, horizontalJumpVelocity):
 				doublejumpCount += 1
 func Hit():
 	get_tree().reload_current_scene()
+
+func addScore():
+	score.addScore(1)

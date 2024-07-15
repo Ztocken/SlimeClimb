@@ -30,3 +30,6 @@ func UpdateTimer(timeSeconds: float):
 
 	if timeSeconds <= 0:
 		player.Hit()
+
+func AddTime(seconds):
+	timeRemaining += seconds
