@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bapvo3efatkf1"]
 
 [ext_resource type="Script" path="res://assets/UI/Timer/timer.gd" id="1_57wyx"]
-[ext_resource type="Texture2D" uid="uid://k646qmx8sux7" path="res://assets/UI/Timer/timer-art.png" id="1_qang3"]
+[ext_resource type="Texture2D" uid="uid://cshkqa5ufvpbk" path="res://assets/UI/Timer/timer-art2.png" id="2_wekjq"]
 
 [node name="Timer" type="Control"]
 layout_mode = 3
@@ -17,7 +17,7 @@ offset_bottom = 23.0
 
 [node name="TimerTexture" type="TextureRect" parent="Timer"]
 layout_mode = 2
-texture = ExtResource("1_qang3")
+texture = ExtResource("2_wekjq")
 expand_mode = 3
 stretch_mode = 3
 

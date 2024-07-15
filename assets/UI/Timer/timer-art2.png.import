@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://k646qmx8sux7"
-path="res://.godot/imported/timer-art.png-1c5c29f71955e7a8f9f0801f591b96d7.ctex"
+uid="uid://cshkqa5ufvpbk"
+path="res://.godot/imported/timer-art2.png-56def006ffdc6e160193e7da80635c33.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/UI/Timer/timer-art.png"
-dest_files=["res://.godot/imported/timer-art.png-1c5c29f71955e7a8f9f0801f591b96d7.ctex"]
+source_file="res://assets/UI/Timer/timer-art2.png"
+dest_files=["res://.godot/imported/timer-art2.png-56def006ffdc6e160193e7da80635c33.ctex"]
 
 [params]
 
