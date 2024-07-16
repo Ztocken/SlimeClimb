@@ -70,5 +70,3 @@ func CheckPlayerInputWallJump(useDoubleJump, horizontalJumpVelocity):
 func Hit():
 	get_tree().reload_current_scene()
 
-func addScore():
-	score.addScore(1)

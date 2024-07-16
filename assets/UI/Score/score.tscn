@@ -19,5 +19,5 @@ offset_bottom = 23.0
 modulate = Color(1, 0.92549, 0.839216, 1)
 self_modulate = Color(1, 0.92549, 0.839216, 1)
 layout_mode = 2
-text = "0
+text = "SCORE: 0
 "

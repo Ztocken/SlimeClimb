@@ -4,4 +4,4 @@ extends Control
 var currentScore:int = 0
 func addScore(value:int):
 	currentScore += value
-	scoreValue.text = str(currentScore)
+	scoreValue.text = str("SCORE: ",currentScore)
