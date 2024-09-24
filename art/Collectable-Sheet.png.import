@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://2hqahqk8rs2f"
-path="res://.godot/imported/player_fall.png-48a42a0717a454133b2cdbccf9fbe65c.ctex"
+uid="uid://mlm8ngwel4xd"
+path="res://.godot/imported/Collectable-Sheet.png-cb7fd84a95b941ae7892c455171707e8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/player/player_fall.png"
-dest_files=["res://.godot/imported/player_fall.png-48a42a0717a454133b2cdbccf9fbe65c.ctex"]
+source_file="res://art/Collectable-Sheet.png"
+dest_files=["res://.godot/imported/Collectable-Sheet.png-cb7fd84a95b941ae7892c455171707e8.ctex"]
 
 [params]
 

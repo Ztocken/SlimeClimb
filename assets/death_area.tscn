@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://b7oogpc8lvbfp"]
+
+[ext_resource type="Script" path="res://assets/DeathArea.gd" id="1_vfnag"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5qnac"]
+
+[node name="DeathArea" type="Area2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_5qnac")
+script = ExtResource("1_vfnag")
+
+[connection signal="area_entered" from="." to="CollisionShape2D" method="_on_death_area_area_entered"]

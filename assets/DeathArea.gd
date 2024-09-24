@@ -1,8 +1,6 @@
-extends Node2D
+extends CollisionShape2D
 
-
-
-func _on_area_2d_area_entered(area):
+func _on_death_area_area_entered(area):
 	var parentNode = area.get_parent()
 	if parentNode is Player:
 		var playerScript = parentNode as Player

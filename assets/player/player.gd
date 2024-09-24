@@ -8,51 +8,51 @@ const HORIZONTAL_JUMP_VELOCITY = 150.0
 @onready var raycastRight = $RayCast2DRight
 @onready var raycastLeft = $RayCast2DLeft
 @onready var sprite = $Sprite2D
-@onready var score = $"../CanvasLayer/Control/VBoxContainer/Score"
-@export var normal_texture: Texture2D
-@export var falling_texture: Texture2D
-@export var stuckwall_texture: Texture2D
+@onready var respawnTimer = $RespawnTimer
+@onready var deathExplosion = $DeathExplosion
 
 @export var maxDoubleJumpCount = 1
 @export var doublejumpCount = 0;
 @export var wallSlideMod = 12
 
+var isDead = false
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func _physics_process(delta):
-	# Check if the player is touching a wall.
-	var is_touching_wall = raycastRight.is_colliding() or raycastLeft.is_colliding()
-	sprite.flip_v = false
-	# Validate if the player is on wall and not on floor
-	if is_touching_wall and not is_on_floor():
-		# Reset  double jump count
-		doublejumpCount = 0
-		#Set wall texture sprite
-		sprite.texture = stuckwall_texture
-		sprite.flip_h = raycastLeft.is_colliding()
+	if !isDead:
+		# Check if the player is touching a wall.
+		var is_touching_wall = raycastRight.is_colliding() or raycastLeft.is_colliding()
+		sprite.flip_v = false
+		# Validate if the player is on wall and not on floor
+		if is_touching_wall and not is_on_floor():
+			# Reset  double jump count
+			doublejumpCount = 0
+			#Set wall texture sprite
+			sprite.frame = 1
+			sprite.flip_h = raycastLeft.is_colliding()
+			
+			# Stop the player from sliding up apply normal gravity on impact.
+			if velocity.y < 1:
+				CalculateGravity(gravity, delta)
+			else: 
+				CalculateGravity(gravity / wallSlideMod, delta)
+			# Check if player jumpls from wall
+			CheckPlayerInputWallJump(false, WALL_JUMP_HORIZONTAL_VELOCITY)
 		
-		# Stop the player from sliding up apply normal gravity on impact.
-		if velocity.y < 1:
+		#if the player is in air apply normal gravity again and check if the player might double jump
+		else:
 			CalculateGravity(gravity, delta)
-		else: 
-			CalculateGravity(gravity / wallSlideMod, delta)
-		# Check if player jumpls from wall
-		CheckPlayerInputWallJump(false, WALL_JUMP_HORIZONTAL_VELOCITY)
-	
-	#if the player is in air apply normal gravity again and check if the player might double jump
-	else:
-		sprite.texture = falling_texture
-		CalculateGravity(gravity, delta)
-		
-		if doublejumpCount < maxDoubleJumpCount:
-			CheckPlayerInputWallJump(true , WALL_JUMP_HORIZONTAL_VELOCITY)
-	#check if the player is on floor then apply no gravity
-	if is_on_floor():
-		velocity.x = 0
-		sprite.texture = normal_texture
-		# Handle horizontal movement.
-		CheckPlayerInputWallJump(false, HORIZONTAL_JUMP_VELOCITY)
-	move_and_slide()
+			sprite.frame = 2
+			
+			if doublejumpCount < maxDoubleJumpCount:
+				CheckPlayerInputWallJump(true , WALL_JUMP_HORIZONTAL_VELOCITY)
+		#check if the player is on floor then apply no gravity
+		if is_on_floor():
+			velocity.x = 0
+			sprite.frame = 0
+			# Handle horizontal movement.
+			CheckPlayerInputWallJump(false, HORIZONTAL_JUMP_VELOCITY)
+		move_and_slide()
 
 func CalculateGravity(gravity, delta):
 	velocity.y += (gravity * delta)
@@ -68,5 +68,12 @@ func CheckPlayerInputWallJump(useDoubleJump, horizontalJumpVelocity):
 			if useDoubleJump:
 				doublejumpCount += 1
 func Hit():
-	get_tree().reload_current_scene()
+	isDead = true
+	respawnTimer.start()
+	sprite.queue_free()
+	deathExplosion.emitting = true;
 
+
+
+func _on_respawn_timer_timeout():
+	get_tree().reload_current_scene()
