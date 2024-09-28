@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://b7oogpc8lvbfp"]
 
-[ext_resource type="Script" path="res://assets/DeathArea.gd" id="1_vfnag"]
+[ext_resource type="Script" path="res://assets/death_area.gd" id="1_nicp8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5qnac"]
 
@@ -8,6 +8,6 @@
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_5qnac")
-script = ExtResource("1_vfnag")
+script = ExtResource("1_nicp8")
 
 [connection signal="area_entered" from="." to="CollisionShape2D" method="_on_death_area_area_entered"]

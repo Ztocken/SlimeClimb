@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://onx4sjhw5caw"]
 
-[ext_resource type="Texture2D" uid="uid://cfquj2vs6m5fr" path="res://art/slimbclimb-art.png" id="1_8ahhn"]
+[ext_resource type="Texture2D" uid="uid://dmxpvfalvy4as" path="res://art/slimbclimb-objects.png" id="1_svnf2"]
 [ext_resource type="PackedScene" uid="uid://b7oogpc8lvbfp" path="res://assets/death_area.tscn" id="3_v7ycm"]
 
 [sub_resource type="GDScript" id="GDScript_uahle"]
@@ -9,9 +9,9 @@
 script = SubResource("GDScript_uahle")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_8ahhn")
+texture = ExtResource("1_svnf2")
 region_enabled = true
-region_rect = Rect2(48, 0, 16, 16)
+region_rect = Rect2(0, 0, 16, 16)
 
 [node name="DeathArea" parent="." instance=ExtResource("3_v7ycm")]
 position = Vector2(-4, 0)

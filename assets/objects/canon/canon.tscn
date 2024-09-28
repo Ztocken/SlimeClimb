@@ -1,15 +1,15 @@
 [gd_scene load_steps=3 format=3 uid="uid://c8kayn8v8o05h"]
 
-[ext_resource type="Texture2D" uid="uid://cfquj2vs6m5fr" path="res://art/slimbclimb-art.png" id="1_0j5lg"]
-[ext_resource type="Script" path="res://assets/World/Tower/Canon/Canon.gd" id="1_u3jor"]
+[ext_resource type="Script" path="res://assets/objects/canon/canon.gd" id="1_0yluh"]
+[ext_resource type="Texture2D" uid="uid://dmxpvfalvy4as" path="res://art/slimbclimb-objects.png" id="2_rxf1g"]
 
 [node name="Canon" type="Node2D"]
-script = ExtResource("1_u3jor")
+script = ExtResource("1_0yluh")
 
 [node name="Canon2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_0j5lg")
+texture = ExtResource("2_rxf1g")
 region_enabled = true
-region_rect = Rect2(48, 16, 16, 16)
+region_rect = Rect2(0, 16, 16, 16)
 
 [node name="Timer" type="Timer" parent="."]
 process_callback = 0

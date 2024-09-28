@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://b7rvhmyvq26bp"]
 
-[ext_resource type="Script" path="res://assets/projectile/projectile.gd" id="1_7ah8m"]
+[ext_resource type="Script" path="res://assets/objects/projectile/projectile.gd" id="1_7ah8m"]
 [ext_resource type="Texture2D" uid="uid://d1ys2qdd6j44j" path="res://art/WorldObjects-Sheet.png" id="2_jsyqx"]
 [ext_resource type="PackedScene" uid="uid://b7oogpc8lvbfp" path="res://assets/death_area.tscn" id="3_fmb1m"]
 

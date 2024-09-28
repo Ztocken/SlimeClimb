@@ -5,4 +5,4 @@ func _on_death_area_area_entered(area):
 	if parentNode is Player:
 		var playerScript = parentNode as Player
 		if playerScript:
-			playerScript.Hit()
+			playerScript.hit()

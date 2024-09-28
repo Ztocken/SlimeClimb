@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://mlm8ngwel4xd"
-path="res://.godot/imported/Collectable-Sheet.png-cb7fd84a95b941ae7892c455171707e8.ctex"
+uid="uid://dmxpvfalvy4as"
+path="res://.godot/imported/slimbclimb-objects.png-c82082d7b48905feec8f0ced40b4b9bf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/Collectable-Sheet.png"
-dest_files=["res://.godot/imported/Collectable-Sheet.png-cb7fd84a95b941ae7892c455171707e8.ctex"]
+source_file="res://art/slimbclimb-objects.png"
+dest_files=["res://.godot/imported/slimbclimb-objects.png-c82082d7b48905feec8f0ced40b4b9bf.ctex"]
 
 [params]
 
