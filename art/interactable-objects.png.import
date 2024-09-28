@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d1ys2qdd6j44j"
-path="res://.godot/imported/WorldObjects-Sheet.png-5606a9481cba02cbfb1c48d190571e04.ctex"
+uid="uid://cvjjrxax3qult"
+path="res://.godot/imported/interactable-objects.png-2aa0492e14ea87a3fb2db71e644171e2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/WorldObjects-Sheet.png"
-dest_files=["res://.godot/imported/WorldObjects-Sheet.png-5606a9481cba02cbfb1c48d190571e04.ctex"]
+source_file="res://art/interactable-objects.png"
+dest_files=["res://.godot/imported/interactable-objects.png-2aa0492e14ea87a3fb2db71e644171e2.ctex"]
 
 [params]
 

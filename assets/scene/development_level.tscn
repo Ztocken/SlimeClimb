@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://qv1v4o375br6"]
+[gd_scene load_steps=12 format=3 uid="uid://qv1v4o375br6"]
 
 [ext_resource type="Texture2D" uid="uid://cfquj2vs6m5fr" path="res://art/slimbclimb-art.png" id="1_ymt71"]
 [ext_resource type="PackedScene" uid="uid://bo7hfryke5rom" path="res://assets/player/player.tscn" id="2_fvttc"]
 [ext_resource type="Texture2D" uid="uid://dmxpvfalvy4as" path="res://art/slimbclimb-objects.png" id="3_j0mdw"]
 [ext_resource type="PackedScene" uid="uid://onx4sjhw5caw" path="res://assets/objects/spikes/spikes.tscn" id="3_ln4pe"]
+[ext_resource type="PackedScene" uid="uid://chhu7tifo1qu7" path="res://assets/objects/coin/coin.tscn" id="4_2kusg"]
 [ext_resource type="PackedScene" uid="uid://tje7yodvy08y" path="res://assets/objects/camera/game_camera.tscn" id="4_edhaw"]
 [ext_resource type="PackedScene" uid="uid://b7oogpc8lvbfp" path="res://assets/death_area.tscn" id="5_dox8u"]
 
@@ -102,10 +103,17 @@ script = SubResource("GDScript_uahle")
 [node name="Spikes" parent="Game" instance=ExtResource("3_ln4pe")]
 position = Vector2(232, 16)
 
+[node name="Coin2" parent="Game" instance=ExtResource("4_2kusg")]
+position = Vector2(295, -248)
+
+[node name="Coin" parent="Game" instance=ExtResource("4_2kusg")]
+position = Vector2(229, 62)
+
 [node name="Player" parent="Game" instance=ExtResource("2_fvttc")]
 position = Vector2(265, 92)
 
 [node name="GameCamera" parent="Game/Player" instance=ExtResource("4_edhaw")]
+position = Vector2(6, 9)
 position_smoothing_enabled = true
 
 [node name="DeathArea" parent="Game" instance=ExtResource("5_dox8u")]

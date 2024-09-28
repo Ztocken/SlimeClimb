@@ -13,7 +13,7 @@ func _ready():
 	randomize()
 	
 func _process(delta):
-	if _shouldCalculateShake:
+	if _shouldCalculateShake && GlobalSettings.cameraShake:
 		_calculateShake()
 
 #calculates the camera shake time 
@@ -23,7 +23,7 @@ func _calculateShake():
 	#calculate the random x and y offset
 	var randX = _random.randf_range(-1, 1) * shakeIntensity * decreaser
 	var randY = _random.randf_range(-1, 1) * shakeIntensity * decreaser
-	
+	print(decreaser)
 	offset = Vector2(randX, randY)
 	if decreaser < 0:
 		#reset back to normal
@@ -34,7 +34,7 @@ func _calculateShake():
 #emit shake
 func shake(intensity = 1, duration = 1):
 	shakeIntensity = intensity
-	shakeDuration = duration
+	shakeDuration = (duration * 1000)
 	_startTime = Time.get_ticks_msec()
 	_shouldCalculateShake = true
 

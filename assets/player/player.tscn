@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://bo7hfryke5rom"]
 
 [ext_resource type="Script" path="res://assets/player/player.gd" id="1_j0rlf"]
-[ext_resource type="Texture2D" uid="uid://c7kcjhqwwuhv5" path="res://art/Entity-Sheet.png" id="2_s7xv1"]
+[ext_resource type="Texture2D" uid="uid://c7kcjhqwwuhv5" path="res://art/default_player_sheet.png" id="2_u36hw"]
 
 [sub_resource type="Curve" id="Curve_kxcfa"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.491166, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 1.4, 0.0, 0, 0]
@@ -40,7 +40,7 @@ scale_amount_curve = SubResource("Curve_kxcfa")
 color = Color(1, 0.831373, 0.639216, 1)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_s7xv1")
+texture = ExtResource("2_u36hw")
 hframes = 5
 region_rect = Rect2(48, 16, 16, 16)
 
