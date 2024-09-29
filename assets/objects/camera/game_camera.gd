@@ -38,6 +38,3 @@ func shake(intensity = 1, duration = 1):
 	_startTime = Time.get_ticks_msec()
 	_shouldCalculateShake = true
 
-#when player hits
-func _on_player_on_hit():
-	shake(1.5,0.5)

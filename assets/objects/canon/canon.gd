@@ -1,11 +1,11 @@
 extends Node2D
 
-@onready var projectile = load("res://assets/projectile/projectile.tscn")
-
+@onready var projectile = load("res://assets/objects/projectile/projectile.tscn")
+@onready var spawnPoint = $spawn
 func shoot():
 	var instance = projectile.instantiate()
 	instance.direction = -1
-	instance.spawnPosition = global_position
+	instance.spawnPosition = spawnPoint.position + global_position
 	instance.spawnRotation = global_rotation
 	add_child.call_deferred(instance)
 

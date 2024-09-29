@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dd52punar6f85"]
+
+[ext_resource type="Script" path="res://util/game_manager.gd" id="1_cdks3"]
+[ext_resource type="PackedScene" uid="uid://b45jheljglftc" path="res://assets/ui/hud.tscn" id="2_0ce1f"]
+
+[node name="Gameplay" type="Node2D"]
+script = ExtResource("1_cdks3")
+
+[node name="Level" type="Node2D" parent="." groups=["level_container"]]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HUD" parent="CanvasLayer" instance=ExtResource("2_0ce1f")]

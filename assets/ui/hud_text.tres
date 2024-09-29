@@ -1,0 +1,8 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://b8k48q0r3gk63"]
+
+[ext_resource type="FontFile" uid="uid://cx2i5r7krem80" path="res://font/Kenney Mini.ttf" id="1_flfvf"]
+
+[resource]
+font = ExtResource("1_flfvf")
+font_size = 8
+font_color = Color(1, 0.92549, 0.839216, 1)

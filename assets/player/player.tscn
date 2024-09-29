@@ -1,11 +1,35 @@
-[gd_scene load_steps=6 format=3 uid="uid://bo7hfryke5rom"]
+[gd_scene load_steps=12 format=3 uid="uid://bo7hfryke5rom"]
 
 [ext_resource type="Script" path="res://assets/player/player.gd" id="1_j0rlf"]
 [ext_resource type="Texture2D" uid="uid://c7kcjhqwwuhv5" path="res://art/default_player_sheet.png" id="2_u36hw"]
+[ext_resource type="PackedScene" uid="uid://tje7yodvy08y" path="res://assets/objects/camera/game_camera.tscn" id="3_crnej"]
 
 [sub_resource type="Curve" id="Curve_kxcfa"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.491166, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 1.4, 0.0, 0, 0]
 point_count = 3
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_8sbjc"]
+particles_animation = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[sub_resource type="Curve" id="Curve_ac2om"]
+_data = [Vector2(0, 0.51213), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ogw6g"]
+curve = SubResource("Curve_ac2om")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7t3gx"]
+gravity = Vector3(0, 0, 0)
+alpha_curve = SubResource("CurveTexture_ogw6g")
+anim_speed_min = 1.0
+anim_speed_max = 1.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1uwnw"]
+atlas = ExtResource("2_u36hw")
+region = Rect2(32, 0, 16, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_khys6"]
 size = Vector2(16, 11)
@@ -13,13 +37,15 @@ size = Vector2(16, 11)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_avisj"]
 size = Vector2(16, 11)
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["player"]]
+z_index = 1
 collision_mask = 3
 platform_floor_layers = 4294967041
 platform_wall_layers = 1
 script = ExtResource("1_j0rlf")
 
 [node name="DeathExplosion" type="CPUParticles2D" parent="."]
+position = Vector2(8, 8)
 emitting = false
 amount = 100
 lifetime = 0.5
@@ -39,23 +65,37 @@ scale_amount_max = 2.0
 scale_amount_curve = SubResource("Curve_kxcfa")
 color = Color(1, 0.831373, 0.639216, 1)
 
+[node name="DashParticles" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_8sbjc")
+position = Vector2(8, 11)
+emitting = false
+amount = 4
+process_material = SubResource("ParticleProcessMaterial_7t3gx")
+texture = SubResource("AtlasTexture_1uwnw")
+lifetime = 0.5
+one_shot = true
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(8, 8)
 texture = ExtResource("2_u36hw")
 hframes = 5
 region_rect = Rect2(48, 16, 16, 16)
 
 [node name="RayCast2DRight" type="RayCast2D" parent="."]
+position = Vector2(8, 8)
 exclude_parent = false
 target_position = Vector2(-15, 0)
 
 [node name="RayCast2DLeft" type="RayCast2D" parent="."]
+position = Vector2(8, 8)
 target_position = Vector2(15, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 2.5)
+position = Vector2(8, 10.5)
 shape = SubResource("RectangleShape2D_khys6")
 
 [node name="Area2D" type="Area2D" parent="."]
+position = Vector2(8, 8)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, 2.5)
@@ -65,4 +105,12 @@ shape = SubResource("RectangleShape2D_avisj")
 process_callback = 0
 wait_time = 0.25
 
+[node name="GameCamera" parent="." instance=ExtResource("3_crnej")]
+position = Vector2(8, 8)
+
+[node name="MomentumCooldown" type="Timer" parent="."]
+wait_time = 0.25
+one_shot = true
+
 [connection signal="timeout" from="RespawnTimer" to="." method="_on_respawn_timer_timeout"]
+[connection signal="timeout" from="MomentumCooldown" to="." method="_on_momentum_cooldown_timeout"]
