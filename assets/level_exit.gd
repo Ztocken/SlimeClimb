@@ -1,11 +1,11 @@
 extends Node2D
 
-class_name Coin
-
+class_name LevelExit
+@export var next_level: int = 0 
+signal onPlayerExit
 
 func _on_area_2d_area_entered(area):
 	var parentNode = area.get_parent()
 	if parentNode is Player:
 		var player = parentNode as Player
-		player.update_coins(5, global_position)
-		self.queue_free()
+		onPlayerExit.emit(next_level)
