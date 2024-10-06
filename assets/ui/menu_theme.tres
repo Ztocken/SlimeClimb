@@ -7,7 +7,7 @@ color = Color(1, 0.92549, 0.839216, 1)
 
 [resource]
 default_font = ExtResource("1_1lc7b")
-default_font_size = 10
+default_font_size = 16
 Button/colors/font_color = Color(1, 0.92549, 0.839216, 1)
 Button/colors/font_disabled_color = Color(0.329412, 0.305882, 0.407843, 1)
 Button/colors/font_focus_color = Color(1, 0.666667, 0.368627, 1)

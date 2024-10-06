@@ -1,31 +1,10 @@
-[gd_scene load_steps=20 format=3 uid="uid://bo7hfryke5rom"]
+[gd_scene load_steps=26 format=3 uid="uid://bo7hfryke5rom"]
 
 [ext_resource type="Script" path="res://assets/player/player.gd" id="1_j0rlf"]
+[ext_resource type="Texture2D" uid="uid://d3nb6lif3tuxq" path="res://art/impact-effect.png" id="2_auchb"]
 [ext_resource type="Texture2D" uid="uid://c7kcjhqwwuhv5" path="res://art/default_player_sheet.png" id="2_u36hw"]
 [ext_resource type="PackedScene" uid="uid://tje7yodvy08y" path="res://assets/objects/camera/game_camera.tscn" id="3_crnej"]
-
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_8sbjc"]
-particles_animation = true
-particles_anim_h_frames = 1
-particles_anim_v_frames = 1
-particles_anim_loop = true
-
-[sub_resource type="Curve" id="Curve_ac2om"]
-_data = [Vector2(0, 0.51213), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_ogw6g"]
-curve = SubResource("Curve_ac2om")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7t3gx"]
-gravity = Vector3(0, 0, 0)
-alpha_curve = SubResource("CurveTexture_ogw6g")
-anim_speed_min = 1.0
-anim_speed_max = 1.0
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1uwnw"]
-atlas = ExtResource("2_u36hw")
-region = Rect2(32, 0, 16, 16)
+[ext_resource type="Texture2D" uid="uid://002jhonw45m4" path="res://art/dust-sprinteffect.png" id="5_uh0ck"]
 
 [sub_resource type="Animation" id="Animation_cpvf8"]
 length = 0.001
@@ -64,6 +43,92 @@ _data = {
 "idle": SubResource("Animation_p4668")
 }
 
+[sub_resource type="Animation" id="Animation_i50mp"]
+resource_name = "impact"
+length = 0.25
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.15, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1, 1.6)]
+}
+
+[sub_resource type="Animation" id="Animation_v22i6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1.2)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kodvu"]
+_data = {
+"RESET": SubResource("Animation_v22i6"),
+"impact": SubResource("Animation_i50mp")
+}
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_khys6"]
 size = Vector2(16, 11)
 
@@ -99,6 +164,35 @@ point_count = 2
 offsets = PackedFloat32Array(0, 0.473333)
 colors = PackedColorArray(1, 1, 1, 0, 1, 0.831373, 0.639216, 1)
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_6v8dk"]
+particles_animation = true
+particles_anim_h_frames = 4
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_xq5k4"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_40mx6"]
+curve = SubResource("Curve_xq5k4")
+
+[sub_resource type="Gradient" id="Gradient_8sj41"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_xakn4"]
+gradient = SubResource("Gradient_8sj41")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_je7ux"]
+particle_flag_disable_z = true
+angle_max = 360.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.2
+color_ramp = SubResource("GradientTexture1D_xakn4")
+anim_speed_min = 1.0
+anim_speed_max = 1.0
+anim_speed_curve = SubResource("CurveTexture_40mx6")
+
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 z_index = 1
 collision_mask = 3
@@ -106,27 +200,31 @@ platform_floor_layers = 4294967041
 platform_wall_layers = 1
 script = ExtResource("1_j0rlf")
 
-[node name="DashParticles" type="GPUParticles2D" parent="."]
-material = SubResource("CanvasItemMaterial_8sbjc")
-position = Vector2(8, 11)
-emitting = false
-amount = 16
-process_material = SubResource("ParticleProcessMaterial_7t3gx")
-texture = SubResource("AtlasTexture_1uwnw")
-lifetime = 0.5
-one_shot = true
-
 [node name="Sprite2D" type="Sprite2D" parent="."]
+light_mask = 0
 position = Vector2(8, 16)
 texture = ExtResource("2_u36hw")
 offset = Vector2(0, -8)
-hframes = 5
+hframes = 7
 region_rect = Rect2(48, 16, 16, 16)
 
 [node name="player_animation" type="AnimationPlayer" parent="Sprite2D"]
 root_node = NodePath("../..")
 libraries = {
 "": SubResource("AnimationLibrary_ciuk8")
+}
+
+[node name="Dust" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(8, 8)
+scale = Vector2(1, 1.2)
+texture = ExtResource("2_auchb")
+hframes = 4
+frame = 1
+
+[node name="DustAnimation" type="AnimationPlayer" parent="Dust"]
+libraries = {
+"": SubResource("AnimationLibrary_kodvu")
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -155,10 +253,8 @@ wait_time = 0.25
 
 [node name="GameCamera" parent="." instance=ExtResource("3_crnej")]
 position = Vector2(8, 8)
-
-[node name="MomentumCooldown" type="Timer" parent="."]
-wait_time = 0.25
-one_shot = true
+position_smoothing_speed = 10.0
+drag_vertical_offset = -0.5
 
 [node name="slideParticle" type="CPUParticles2D" parent="."]
 position = Vector2(0, 11)
@@ -203,5 +299,16 @@ scale_amount_curve = SubResource("Curve_kxcfa")
 color = Color(1, 0.831373, 0.639216, 1)
 color_ramp = SubResource("Gradient_hofco")
 
+[node name="DustTrail" type="GPUParticles2D" parent="."]
+z_index = -1
+material = SubResource("CanvasItemMaterial_6v8dk")
+position = Vector2(8, 11)
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_je7ux")
+texture = ExtResource("5_uh0ck")
+lifetime = 1.2
+one_shot = true
+explosiveness = 0.8
+randomness = 0.7
+
 [connection signal="timeout" from="RespawnTimer" to="." method="_on_respawn_timer_timeout"]
-[connection signal="timeout" from="MomentumCooldown" to="." method="_on_momentum_cooldown_timeout"]

@@ -2,10 +2,9 @@ extends Control
 
 class_name Hud
 
-@onready var momentumProgressBar:TextureProgressBar = $MomentumBoxContainer/momentum_progressbar
-@onready var coin_label: Label = $VBoxContainer/coin_label
-@onready var timeLabel:Label = $VBoxContainer/time_label
-@onready var levelLabel:Label = $MomentumBoxContainer/level_label
+@onready var coin_label: Label = $MarginContainer/VBoxContainer/coin_label
+@onready var timeLabel:Label = $MarginContainer/VBoxContainer/time_label
+@onready var levelLabel:Label = $MarginContainer/VBoxContainer/level_label
 
 var time_elapsed := 0.0
 var seconds: int = 0
@@ -17,10 +16,6 @@ func _ready():
 
 func update_level(level: int):
 	levelLabel.text = "level " + str(level)
-	
-func update_momentum(momentum:float):
-	momentumProgressBar.value = momentum
-
 
 func update_coins(coin: int):
 	coin_label.text = "Coins: "+ str(coin)

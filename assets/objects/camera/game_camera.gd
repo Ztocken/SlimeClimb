@@ -9,6 +9,8 @@ var _startTime = 0
 var _random = RandomNumberGenerator.new()
 var _shouldCalculateShake: bool = false
 
+var tileMap: TileMap
+
 func _ready():
 	randomize()
 	

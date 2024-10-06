@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://joclw0ep3vd1"]
+[gd_scene load_steps=5 format=3 uid="uid://joclw0ep3vd1"]
 
 [ext_resource type="PackedScene" uid="uid://i78xjfl5x0p1" path="res://util/tile_map_parser/tile_map_parser.tscn" id="1_brbmk"]
 [ext_resource type="TileSet" uid="uid://dk4wjvol45h6c" path="res://assets/tilesets/standrad_tileset.tres" id="2_omy0u"]
 [ext_resource type="PackedScene" uid="uid://blgk6gm4bskdr" path="res://assets/level_exit.tscn" id="3_8kfpx"]
+[ext_resource type="Texture2D" uid="uid://cachw7dnwp08t" path="res://art/light.png" id="4_txlyd"]
 
 [node name="Level1" type="Node2D"]
 
@@ -22,3 +23,12 @@ layer_1/tile_data = PackedInt32Array(-1, 131077, 1, -1310723, 196613, 0, -157286
 position = Vector2(-8, -466)
 scale = Vector2(4.12, 0.56)
 next_level = 2
+
+[node name="TopLight" type="PointLight2D" parent="."]
+position = Vector2(-8, -466)
+color = Color(1, 0.92549, 0.839216, 1)
+energy = 1.1
+shadow_enabled = true
+shadow_filter = 1
+texture = ExtResource("4_txlyd")
+texture_scale = 4.0
