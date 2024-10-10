@@ -20,10 +20,7 @@ func display_info(text:String, position: Vector2):
 	
 	var tween= get_tree().create_tween()
 	tween.set_parallel(true)
-	tween.tween_property(info_label, "scale", Vector2.ZERO, 0.25).set_ease(Tween.EASE_IN).set_delay(0.5)
+	tween.tween_property(info_label, "scale", Vector2.ZERO, 1).set_ease(Tween.EASE_IN).set_delay(0.5)
 	
 	await  tween.finished
 	info_label.queue_free()
-	
-
-

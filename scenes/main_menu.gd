@@ -2,10 +2,10 @@ extends Control
 
 
 func _ready():
-	GlobalObjects.current_coins = 0
-	$VBoxContainer/PlayButton.grab_focus()
+	$VBoxContainer/play_button.grab_focus()
 
 func _on_quit_button_button_down():
+	GameObjectManager.save_data(GameObjectManager.player_save_file, true)
 	get_tree().quit()
 
 

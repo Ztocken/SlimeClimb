@@ -28,7 +28,7 @@ func get_tile_id():
 			return id
 
 func get_object_by_cell(coordinate:Vector2, spawnPosition:Vector2):
-	var map = GlobalObjects.tile_objects
+	var map = GameObjectManager.tile_objects
 	if map.has(coordinate):
 		var objectData = map.get(coordinate)
 		if objectData.has("object"):

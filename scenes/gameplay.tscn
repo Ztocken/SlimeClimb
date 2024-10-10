@@ -1,9 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://dd52punar6f85"]
+[gd_scene load_steps=8 format=3 uid="uid://dd52punar6f85"]
 
-[ext_resource type="Script" path="res://util/game_manager.gd" id="1_cdks3"]
+[ext_resource type="Script" path="res://util/level_manager.gd" id="1_cdks3"]
 [ext_resource type="PackedScene" uid="uid://b45jheljglftc" path="res://assets/ui/hud.tscn" id="2_0ce1f"]
-[ext_resource type="Shader" path="res://util/blur_scene.gdshader" id="3_0unyj"]
 [ext_resource type="Theme" uid="uid://brcdq62xfx56e" path="res://assets/ui/menu_theme.tres" id="4_2osel"]
+[ext_resource type="PackedScene" uid="uid://ckufb1ylfvmw6" path="res://assets/ui/gameover_screen/game_overscreen.tscn" id="4_mxjnh"]
+[ext_resource type="PackedScene" uid="uid://de1mk8uif1kl4" path="res://assets/ui/victory_screen/victory_screen.tscn" id="5_4pidi"]
+[ext_resource type="PackedScene" uid="uid://cbwladoxfsa2b" path="res://assets/ui/pause_screen/pause_screen.tscn" id="6_sctbm"]
 
 [sub_resource type="Environment" id="Environment_gm81n"]
 background_mode = 3
@@ -11,22 +13,6 @@ glow_normalized = true
 glow_intensity = 0.3
 glow_blend_mode = 0
 glow_hdr_threshold = 1.5
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_xxm68"]
-shader = ExtResource("3_0unyj")
-shader_parameter/lod = 1.5
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_01lmf"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vw4n7"]
-content_margin_left = 2.0
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_71u2m"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rjsdh"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ms6xb"]
-content_margin_left = 2.0
 
 [node name="Gameplay" type="Node2D"]
 script = ExtResource("1_cdks3")
@@ -39,231 +25,27 @@ environment = SubResource("Environment_gm81n")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="HUD" parent="CanvasLayer" instance=ExtResource("2_0ce1f")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
+size_flags_horizontal = 0
 
-[node name="retry_box" type="ColorRect" parent="CanvasLayer"]
-material = SubResource("ShaderMaterial_xxm68")
-anchors_preset = 15
-anchor_right = 1.0
+[node name="pause" type="Button" parent="CanvasLayer"]
+anchors_preset = 2
+anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = -1.0
-offset_right = -1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="retry_container" type="VBoxContainer" parent="CanvasLayer/retry_box"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -115.0
-offset_top = -60.0
-offset_right = 115.0
-offset_bottom = 60.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-
-[node name="Label" type="Label" parent="CanvasLayer/retry_box/retry_container"]
-layout_mode = 2
+offset_top = -32.0
+offset_right = 64.0
+grow_vertical = 0
 theme = ExtResource("4_2osel")
-text = "Oh dear, you died!"
-horizontal_alignment = 1
+text = "Pause"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/retry_box/retry_container"]
-layout_mode = 2
-size_flags_horizontal = 4
+[node name="game_overscreen" parent="CanvasLayer" instance=ExtResource("4_mxjnh")]
 
-[node name="level_label" type="Label" parent="CanvasLayer/retry_box/retry_container/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-theme = ExtResource("4_2osel")
-theme_override_font_sizes/font_size = 8
-text = "Level 0"
-horizontal_alignment = 1
+[node name="pause_screen" parent="CanvasLayer" instance=ExtResource("6_sctbm")]
 
-[node name="time_label" type="Label" parent="CanvasLayer/retry_box/retry_container/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-theme = ExtResource("4_2osel")
-theme_override_font_sizes/font_size = 8
-text = "Time:00:00.0"
-horizontal_alignment = 1
+[node name="victory_screen" parent="CanvasLayer" instance=ExtResource("5_4pidi")]
 
-[node name="coin_label" type="Label" parent="CanvasLayer/retry_box/retry_container/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-theme = ExtResource("4_2osel")
-theme_override_font_sizes/font_size = 8
-text = "Coins:0"
-horizontal_alignment = 1
-
-[node name="VSplitContainer" type="VSplitContainer" parent="CanvasLayer/retry_box/retry_container"]
-custom_minimum_size = Vector2(0, 16)
-layout_mode = 2
-
-[node name="retry_button" type="Button" parent="CanvasLayer/retry_box/retry_container"]
-process_mode = 2
-layout_mode = 2
-focus_neighbor_top = NodePath("../quit_button")
-theme = ExtResource("4_2osel")
-theme_type_variation = &"FlatButton"
-theme_override_styles/normal = SubResource("StyleBoxEmpty_01lmf")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_vw4n7")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_71u2m")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_rjsdh")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_ms6xb")
-disabled = true
-text = "Retry (20 coins)"
-
-[node name="reset_button" type="Button" parent="CanvasLayer/retry_box/retry_container"]
-process_mode = 2
-layout_mode = 2
-theme = ExtResource("4_2osel")
-theme_type_variation = &"FlatButton"
-theme_override_colors/font_color = Color(1, 0.92549, 0.839216, 1)
-theme_override_colors/font_hover_color = Color(1, 0.666667, 0.368627, 1)
-theme_override_colors/font_focus_color = Color(1, 0.666667, 0.368627, 1)
-theme_override_colors/font_hover_pressed_color = Color(1, 0.666667, 0.368627, 1)
-theme_override_colors/font_disabled_color = Color(0.329412, 0.305882, 0.407843, 1)
-theme_override_styles/normal = SubResource("StyleBoxEmpty_01lmf")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_vw4n7")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_71u2m")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_rjsdh")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_ms6xb")
-text = "Restart"
-
-[node name="quit_button" type="Button" parent="CanvasLayer/retry_box/retry_container"]
-process_mode = 2
-layout_mode = 2
-focus_neighbor_bottom = NodePath("../retry_button")
-theme = ExtResource("4_2osel")
-theme_type_variation = &"FlatButton"
-theme_override_colors/font_color = Color(1, 0.92549, 0.839216, 1)
-theme_override_colors/font_hover_color = Color(1, 0.666667, 0.368627, 1)
-theme_override_colors/font_focus_color = Color(1, 0.666667, 0.368627, 1)
-theme_override_colors/font_hover_pressed_color = Color(1, 0.666667, 0.368627, 1)
-theme_override_colors/font_disabled_color = Color(0.329412, 0.305882, 0.407843, 1)
-theme_override_styles/normal = SubResource("StyleBoxEmpty_01lmf")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_vw4n7")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_71u2m")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_rjsdh")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_ms6xb")
-text = "Quit"
-
-[node name="pause_box" type="ColorRect" parent="CanvasLayer"]
-visible = false
-material = SubResource("ShaderMaterial_xxm68")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-
-[node name="pause_container" type="VBoxContainer" parent="CanvasLayer/pause_box"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -33.0
-offset_top = -56.0
-offset_right = 33.0
-offset_bottom = 56.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-alignment = 1
-
-[node name="Label" type="Label" parent="CanvasLayer/pause_box/pause_container"]
-layout_mode = 2
-theme = ExtResource("4_2osel")
-theme_override_font_sizes/font_size = 16
-text = "Paused"
-horizontal_alignment = 1
-
-[node name="HSeparator" type="HSeparator" parent="CanvasLayer/pause_box/pause_container"]
-custom_minimum_size = Vector2(0, 20)
-layout_mode = 2
-size_flags_stretch_ratio = 0.0
-theme = ExtResource("4_2osel")
-
-[node name="resume_button" type="Button" parent="CanvasLayer/pause_box/pause_container"]
-process_mode = 2
-layout_mode = 2
-focus_neighbor_top = NodePath("../quit_button")
-theme = ExtResource("4_2osel")
-theme_type_variation = &"FlatButton"
-theme_override_colors/font_color = Color(1, 0.92549, 0.839216, 1)
-theme_override_colors/font_hover_color = Color(1, 0.666667, 0.368627, 1)
-theme_override_colors/font_focus_color = Color(1, 0.666667, 0.368627, 1)
-theme_override_colors/font_hover_pressed_color = Color(1, 0.666667, 0.368627, 1)
-theme_override_colors/font_disabled_color = Color(0.329412, 0.305882, 0.407843, 1)
-theme_override_styles/normal = SubResource("StyleBoxEmpty_01lmf")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_vw4n7")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_71u2m")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_rjsdh")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_ms6xb")
-text = "Resume"
-
-[node name="restart_button" type="Button" parent="CanvasLayer/pause_box/pause_container"]
-process_mode = 2
-layout_mode = 2
-theme = ExtResource("4_2osel")
-theme_type_variation = &"FlatButton"
-theme_override_colors/font_color = Color(1, 0.92549, 0.839216, 1)
-theme_override_colors/font_hover_color = Color(1, 0.666667, 0.368627, 1)
-theme_override_colors/font_focus_color = Color(1, 0.666667, 0.368627, 1)
-theme_override_colors/font_hover_pressed_color = Color(1, 0.666667, 0.368627, 1)
-theme_override_colors/font_disabled_color = Color(0.329412, 0.305882, 0.407843, 1)
-theme_override_styles/normal = SubResource("StyleBoxEmpty_01lmf")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_vw4n7")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_71u2m")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_rjsdh")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_ms6xb")
-text = "Restart"
-
-[node name="options_button" type="Button" parent="CanvasLayer/pause_box/pause_container"]
-process_mode = 2
-layout_mode = 2
-theme = ExtResource("4_2osel")
-theme_type_variation = &"FlatButton"
-theme_override_colors/font_color = Color(1, 0.92549, 0.839216, 1)
-theme_override_colors/font_hover_color = Color(1, 0.666667, 0.368627, 1)
-theme_override_colors/font_focus_color = Color(1, 0.666667, 0.368627, 1)
-theme_override_colors/font_hover_pressed_color = Color(1, 0.666667, 0.368627, 1)
-theme_override_colors/font_disabled_color = Color(0.329412, 0.305882, 0.407843, 1)
-theme_override_styles/normal = SubResource("StyleBoxEmpty_01lmf")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_vw4n7")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_71u2m")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_rjsdh")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_ms6xb")
-text = "Options"
-
-[node name="quit_button" type="Button" parent="CanvasLayer/pause_box/pause_container"]
-process_mode = 2
-layout_mode = 2
-focus_neighbor_bottom = NodePath("../resume_button")
-theme = ExtResource("4_2osel")
-theme_type_variation = &"FlatButton"
-theme_override_colors/font_color = Color(1, 0.92549, 0.839216, 1)
-theme_override_colors/font_hover_color = Color(1, 0.666667, 0.368627, 1)
-theme_override_colors/font_focus_color = Color(1, 0.666667, 0.368627, 1)
-theme_override_colors/font_hover_pressed_color = Color(1, 0.666667, 0.368627, 1)
-theme_override_colors/font_disabled_color = Color(0.329412, 0.305882, 0.407843, 1)
-theme_override_styles/normal = SubResource("StyleBoxEmpty_01lmf")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_vw4n7")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_71u2m")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_rjsdh")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_ms6xb")
-text = "Quit"
-
-[connection signal="button_down" from="CanvasLayer/retry_box/retry_container/retry_button" to="." method="_on_retry_button_button_down"]
-[connection signal="button_down" from="CanvasLayer/retry_box/retry_container/reset_button" to="." method="_on_reset_button_button_down"]
-[connection signal="button_down" from="CanvasLayer/retry_box/retry_container/quit_button" to="." method="_on_quit_button_button_down"]
-[connection signal="button_down" from="CanvasLayer/pause_box/pause_container/resume_button" to="." method="_on_resume_button_button_down"]
-[connection signal="button_down" from="CanvasLayer/pause_box/pause_container/restart_button" to="." method="_on_restart_button_button_down"]
-[connection signal="button_down" from="CanvasLayer/pause_box/pause_container/quit_button" to="." method="_on_quit_button_button_down"]
+[connection signal="button_down" from="CanvasLayer/pause" to="." method="_on_pause_button_down"]

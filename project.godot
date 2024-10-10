@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Slime Climb"
+config/name="Slime Climbe"
 config/version="0.5"
 run/main_scene="res://scenes/main_menu.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
@@ -18,21 +18,24 @@ config/icon="res://SlimeClimbIcon.svg"
 
 [autoload]
 
-GlobalData="*res://util/global_settings.gd"
-DataObjectMap="*res://util/global_objects.gd"
 DisplayInfo="*res://util/display_info.gd"
+Toolkit="*res://util/toolkit.gd"
+GameobjectManager="*res://util/gameobject_manager.gd"
 
 [display]
 
-window/size/viewport_width=480
-window/size/viewport_height=270
+window/size/viewport_width=360
+window/size/viewport_height=640
 window/size/no_focus=true
-window/size/window_width_override=1080
-window/size/window_height_override=2340
+window/size/window_width_override=1920
+window/size/window_height_override=1080
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
-window/stretch/scale=3.0
 window/handheld/orientation=1
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/applovin_max/plugin.cfg")
 
 [input]
 
@@ -74,5 +77,6 @@ look_up={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
+rendering_device/driver="GLES2"
 textures/vram_compression/import_etc2_astc=true
 environment/defaults/default_clear_color=Color(0.0509804, 0.168627, 0.270588, 1)

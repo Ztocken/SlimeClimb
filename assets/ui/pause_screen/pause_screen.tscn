@@ -1,0 +1,134 @@
+[gd_scene load_steps=10 format=3 uid="uid://cbwladoxfsa2b"]
+
+[ext_resource type="Shader" path="res://util/blur_scene.gdshader" id="1_apmkj"]
+[ext_resource type="Script" path="res://assets/ui/pause_screen/pause_screen.gd" id="2_dulij"]
+[ext_resource type="Theme" uid="uid://brcdq62xfx56e" path="res://assets/ui/menu_theme.tres" id="2_vhkep"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xxm68"]
+shader = ExtResource("1_apmkj")
+shader_parameter/lod = 2.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_01lmf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vw4n7"]
+content_margin_left = 2.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_71u2m"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rjsdh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ms6xb"]
+content_margin_left = 2.0
+
+[node name="pause_screen" type="ColorRect"]
+material = SubResource("ShaderMaterial_xxm68")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+script = ExtResource("2_dulij")
+
+[node name="pause_container" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -33.0
+offset_top = -70.0
+offset_right = 33.0
+offset_bottom = 70.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="Label" type="Label" parent="pause_container"]
+layout_mode = 2
+theme = ExtResource("2_vhkep")
+theme_override_font_sizes/font_size = 16
+text = "Paused"
+horizontal_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="pause_container"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+size_flags_stretch_ratio = 0.0
+theme = ExtResource("2_vhkep")
+
+[node name="resume_button" type="Button" parent="pause_container"]
+process_mode = 2
+layout_mode = 2
+focus_neighbor_top = NodePath("../quit_button")
+theme = ExtResource("2_vhkep")
+theme_type_variation = &"FlatButton"
+theme_override_colors/font_color = Color(1, 0.92549, 0.839216, 1)
+theme_override_colors/font_hover_color = Color(1, 0.666667, 0.368627, 1)
+theme_override_colors/font_focus_color = Color(1, 0.666667, 0.368627, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 0.666667, 0.368627, 1)
+theme_override_colors/font_disabled_color = Color(0.329412, 0.305882, 0.407843, 1)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_01lmf")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_vw4n7")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_71u2m")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_rjsdh")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ms6xb")
+text = "Resume"
+
+[node name="restart_button" type="Button" parent="pause_container"]
+process_mode = 2
+layout_mode = 2
+theme = ExtResource("2_vhkep")
+theme_type_variation = &"FlatButton"
+theme_override_colors/font_color = Color(1, 0.92549, 0.839216, 1)
+theme_override_colors/font_hover_color = Color(1, 0.666667, 0.368627, 1)
+theme_override_colors/font_focus_color = Color(1, 0.666667, 0.368627, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 0.666667, 0.368627, 1)
+theme_override_colors/font_disabled_color = Color(0.329412, 0.305882, 0.407843, 1)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_01lmf")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_vw4n7")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_71u2m")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_rjsdh")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ms6xb")
+text = "Restart"
+
+[node name="options_button" type="Button" parent="pause_container"]
+process_mode = 2
+layout_mode = 2
+theme = ExtResource("2_vhkep")
+theme_type_variation = &"FlatButton"
+theme_override_colors/font_color = Color(1, 0.92549, 0.839216, 1)
+theme_override_colors/font_hover_color = Color(1, 0.666667, 0.368627, 1)
+theme_override_colors/font_focus_color = Color(1, 0.666667, 0.368627, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 0.666667, 0.368627, 1)
+theme_override_colors/font_disabled_color = Color(0.329412, 0.305882, 0.407843, 1)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_01lmf")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_vw4n7")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_71u2m")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_rjsdh")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ms6xb")
+text = "Options"
+
+[node name="quit_button" type="Button" parent="pause_container"]
+process_mode = 2
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../resume_button")
+theme = ExtResource("2_vhkep")
+theme_type_variation = &"FlatButton"
+theme_override_colors/font_color = Color(1, 0.92549, 0.839216, 1)
+theme_override_colors/font_hover_color = Color(1, 0.666667, 0.368627, 1)
+theme_override_colors/font_focus_color = Color(1, 0.666667, 0.368627, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 0.666667, 0.368627, 1)
+theme_override_colors/font_disabled_color = Color(0.329412, 0.305882, 0.407843, 1)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_01lmf")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_vw4n7")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_71u2m")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_rjsdh")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ms6xb")
+text = "Main menu"
+
+[connection signal="button_down" from="pause_container/resume_button" to="." method="_on_resume_button_down"]
+[connection signal="button_down" from="pause_container/restart_button" to="." method="_on_restart_button_down"]
+[connection signal="button_down" from="pause_container/quit_button" to="." method="_on_quit_button_down"]

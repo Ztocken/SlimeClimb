@@ -14,35 +14,42 @@ script = ExtResource("1_kp3ao")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
-offset_right = 83.0
-offset_bottom = 68.0
-theme_override_constants/margin_left = 20
+anchors_preset = -1
+anchor_right = 0.311
+anchor_bottom = 0.137
+offset_right = 0.0399933
+offset_bottom = 0.319992
+theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_direction = 1
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
 [node name="level_label" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
 theme = ExtResource("2_kollq")
-theme_override_font_sizes/font_size = 8
+theme_override_font_sizes/font_size = 16
 text = "Level 0"
 vertical_alignment = 1
 
 [node name="coin_label" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
 theme = ExtResource("2_kollq")
-theme_override_font_sizes/font_size = 8
+theme_override_font_sizes/font_size = 16
 text = "Coins: 0"
 vertical_alignment = 1
 
 [node name="time_label" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
 theme = ExtResource("2_kollq")
-theme_override_font_sizes/font_size = 8
+theme_override_font_sizes/font_size = 16
 text = "Time: 00:00"
 vertical_alignment = 1

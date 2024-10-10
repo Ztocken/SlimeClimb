@@ -15,7 +15,7 @@ func _ready():
 	randomize()
 	
 func _process(delta):
-	if _shouldCalculateShake && GlobalSettings.cameraShake:
+	if _shouldCalculateShake:
 		_calculateShake()
 
 #calculates the camera shake time 

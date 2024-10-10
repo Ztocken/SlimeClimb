@@ -2,8 +2,8 @@ extends CharacterBody2D
 class_name Player
 
 const JUMP_VELOCITY = -300.0
-const WALL_JUMP_HORIZONTAL_VELOCITY = 200.0  # Horizontal velocity for wall jumps
-const HORIZONTAL_JUMP_VELOCITY = 100.0
+const WALL_JUMP_HORIZONTAL_VELOCITY = 220.0  # Horizontal velocity for wall jumps
+const HORIZONTAL_JUMP_VELOCITY = 150.0
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 @onready var raycastRight = $RayCast2DRight
 @onready var raycastLeft = $RayCast2DLeft
@@ -16,6 +16,7 @@ const HORIZONTAL_JUMP_VELOCITY = 100.0
 @onready var dust_animation:AnimationPlayer = $Dust/DustAnimation
 @onready var dust_sprite:Sprite2D = $Dust
 @onready var dust_trail:GPUParticles2D = $DustTrail
+@onready var jump_timer: Timer = $jump_cooldown
 @export var wallSlideMod = 12
 
 signal onHit
@@ -35,8 +36,8 @@ var touch_start_position = Vector2()
 var touch_end_position = Vector2()
 var swipe_distance_vertical = 0
 var vertical_input: float = 0
-var fist_wall_impact : bool = false;
-
+var fist_wall_impact : bool = false
+var can_jump: bool = true
 
 func _input(event):
 	if event is InputEventScreenTouch:
@@ -133,15 +134,14 @@ func _check_player_input(horizontalJumpVelocity):
 			jump(horizontalJumpVelocity)
 
 func jump(horizontalJumpVelocity: float):
-	dust_trail.restart()
-	dust_trail.emitting = true
 	first_floor_impact = true
 	var jump_tween = get_tree().create_tween()
 	jump_tween.tween_property(sprite, "scale", Vector2(0.9,1.2), 0.05).set_ease(Tween.EASE_IN)
 	jump_tween.tween_property(sprite, "scale", Vector2.ONE, 0.05).set_ease(Tween.EASE_OUT).set_delay(0.05)
 	sprite.flip_h = horizontalJumpVelocity < 0
 	velocity = Vector2(horizontalJumpVelocity, JUMP_VELOCITY)
-	
+
+
 
 func hit():
 	set_physics_process(false)

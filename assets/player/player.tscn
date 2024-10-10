@@ -43,6 +43,45 @@ _data = {
 "idle": SubResource("Animation_p4668")
 }
 
+[sub_resource type="Animation" id="Animation_v22i6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1.2)]
+}
+
 [sub_resource type="Animation" id="Animation_i50mp"]
 resource_name = "impact"
 length = 0.25
@@ -84,45 +123,6 @@ tracks/2/keys = {
 "values": [Vector2(1, 1), Vector2(1, 1.6)]
 }
 
-[sub_resource type="Animation" id="Animation_v22i6"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [1]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath(".:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(1, 1.2)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kodvu"]
 _data = {
 "RESET": SubResource("Animation_v22i6"),
@@ -161,7 +161,7 @@ _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Gradient" id="Gradient_hofco"]
-offsets = PackedFloat32Array(0, 0.473333)
+offsets = PackedFloat32Array(0, 0.86)
 colors = PackedColorArray(1, 1, 1, 0, 1, 0.831373, 0.639216, 1)
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_6v8dk"]
@@ -170,12 +170,12 @@ particles_anim_h_frames = 4
 particles_anim_v_frames = 1
 particles_anim_loop = false
 
-[sub_resource type="Curve" id="Curve_xq5k4"]
+[sub_resource type="Curve" id="Curve_1w1oa"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="CurveTexture" id="CurveTexture_40mx6"]
-curve = SubResource("Curve_xq5k4")
+curve = SubResource("Curve_1w1oa")
 
 [sub_resource type="Gradient" id="Gradient_8sj41"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
@@ -253,6 +253,7 @@ wait_time = 0.25
 
 [node name="GameCamera" parent="." instance=ExtResource("3_crnej")]
 position = Vector2(8, 8)
+zoom = Vector2(2, 2)
 position_smoothing_speed = 10.0
 drag_vertical_offset = -0.5
 
@@ -278,7 +279,6 @@ color_ramp = SubResource("Gradient_0uoyg")
 position = Vector2(8, 10)
 emitting = false
 amount = 100
-lifetime = 0.5
 one_shot = true
 speed_scale = 2.0
 explosiveness = 1.0
@@ -310,5 +310,7 @@ lifetime = 1.2
 one_shot = true
 explosiveness = 0.8
 randomness = 0.7
+
+[node name="jump_cooldown" type="Timer" parent="."]
 
 [connection signal="timeout" from="RespawnTimer" to="." method="_on_respawn_timer_timeout"]

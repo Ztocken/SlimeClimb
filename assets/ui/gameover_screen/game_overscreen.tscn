@@ -1,0 +1,171 @@
+[gd_scene load_steps=11 format=3 uid="uid://ckufb1ylfvmw6"]
+
+[ext_resource type="Shader" path="res://util/blur_scene.gdshader" id="1_0njqu"]
+[ext_resource type="Script" path="res://assets/ui/gameover_screen/game_overscreen.gd" id="2_1sukq"]
+[ext_resource type="Theme" uid="uid://brcdq62xfx56e" path="res://assets/ui/menu_theme.tres" id="2_ovhcg"]
+[ext_resource type="FontFile" uid="uid://cx2i5r7krem80" path="res://font/Kenney Mini.ttf" id="3_hw866"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xxm68"]
+shader = ExtResource("1_0njqu")
+shader_parameter/lod = 2.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_01lmf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vw4n7"]
+content_margin_left = 2.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_71u2m"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rjsdh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ms6xb"]
+content_margin_left = 2.0
+
+[node name="game_overscreen" type="ColorRect"]
+material = SubResource("ShaderMaterial_xxm68")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_right = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_1sukq")
+
+[node name="retry_container" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -115.0
+offset_top = -60.0
+offset_right = 115.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+
+[node name="title" type="Label" parent="retry_container"]
+modulate = Color(1, 0.639216, 0.639216, 1)
+layout_mode = 2
+theme = ExtResource("2_ovhcg")
+theme_override_fonts/font = ExtResource("3_hw866")
+theme_override_font_sizes/font_size = 24
+text = "was that a good idea?"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="retry_container"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="level_label" type="Label" parent="retry_container/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_ovhcg")
+theme_override_fonts/font = ExtResource("3_hw866")
+theme_override_font_sizes/font_size = 16
+text = "Level 0"
+horizontal_alignment = 1
+
+[node name="time_label" type="Label" parent="retry_container/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_ovhcg")
+theme_override_fonts/font = ExtResource("3_hw866")
+theme_override_font_sizes/font_size = 16
+text = "Time:00:00.0"
+horizontal_alignment = 1
+
+[node name="coin_label" type="Label" parent="retry_container/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_ovhcg")
+theme_override_fonts/font = ExtResource("3_hw866")
+theme_override_font_sizes/font_size = 16
+text = "Coins:0"
+horizontal_alignment = 1
+
+[node name="VSplitContainer" type="VSplitContainer" parent="retry_container"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+
+[node name="retry_button_coin" type="Button" parent="retry_container"]
+process_mode = 2
+layout_mode = 2
+focus_neighbor_top = NodePath("../quit_button")
+theme = ExtResource("2_ovhcg")
+theme_type_variation = &"FlatButton"
+theme_override_fonts/font = ExtResource("3_hw866")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxEmpty_01lmf")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_vw4n7")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_71u2m")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_rjsdh")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ms6xb")
+disabled = true
+text = "Retry - 20 coins"
+
+[node name="retry_button_ad" type="Button" parent="retry_container"]
+process_mode = 2
+layout_mode = 2
+theme = ExtResource("2_ovhcg")
+theme_type_variation = &"FlatButton"
+theme_override_colors/font_color = Color(1, 0.92549, 0.839216, 1)
+theme_override_colors/font_hover_color = Color(1, 0.666667, 0.368627, 1)
+theme_override_colors/font_focus_color = Color(1, 0.666667, 0.368627, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 0.666667, 0.368627, 1)
+theme_override_colors/font_disabled_color = Color(0.329412, 0.305882, 0.407843, 1)
+theme_override_fonts/font = ExtResource("3_hw866")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxEmpty_01lmf")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_vw4n7")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_71u2m")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_rjsdh")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ms6xb")
+text = "Retry - Watch AD"
+
+[node name="reset_button" type="Button" parent="retry_container"]
+process_mode = 2
+layout_mode = 2
+theme = ExtResource("2_ovhcg")
+theme_type_variation = &"FlatButton"
+theme_override_colors/font_color = Color(1, 0.92549, 0.839216, 1)
+theme_override_colors/font_hover_color = Color(1, 0.666667, 0.368627, 1)
+theme_override_colors/font_focus_color = Color(1, 0.666667, 0.368627, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 0.666667, 0.368627, 1)
+theme_override_colors/font_disabled_color = Color(0.329412, 0.305882, 0.407843, 1)
+theme_override_fonts/font = ExtResource("3_hw866")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxEmpty_01lmf")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_vw4n7")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_71u2m")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_rjsdh")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ms6xb")
+text = "Restart"
+
+[node name="quit_button" type="Button" parent="retry_container"]
+process_mode = 2
+layout_mode = 2
+focus_neighbor_bottom = NodePath("../retry_button_coin")
+theme = ExtResource("2_ovhcg")
+theme_type_variation = &"FlatButton"
+theme_override_colors/font_color = Color(1, 0.92549, 0.839216, 1)
+theme_override_colors/font_hover_color = Color(1, 0.666667, 0.368627, 1)
+theme_override_colors/font_focus_color = Color(1, 0.666667, 0.368627, 1)
+theme_override_colors/font_hover_pressed_color = Color(1, 0.666667, 0.368627, 1)
+theme_override_colors/font_disabled_color = Color(0.329412, 0.305882, 0.407843, 1)
+theme_override_fonts/font = ExtResource("3_hw866")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxEmpty_01lmf")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_vw4n7")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_71u2m")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_rjsdh")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ms6xb")
+text = "Main Menu"
+
+[connection signal="button_down" from="retry_container/retry_button_coin" to="." method="retry_level_pay_coin"]
+[connection signal="button_down" from="retry_container/retry_button_ad" to="." method="retry_level_watch_ad"]
+[connection signal="button_down" from="retry_container/reset_button" to="." method="restart"]
+[connection signal="button_down" from="retry_container/quit_button" to="." method="quit_main_menu"]

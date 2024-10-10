@@ -6,13 +6,11 @@ class_name Hud
 @onready var timeLabel:Label = $MarginContainer/VBoxContainer/time_label
 @onready var levelLabel:Label = $MarginContainer/VBoxContainer/level_label
 
-var time_elapsed := 0.0
-var seconds: int = 0
-var minutes: int = 0
-var tenths: int = 0
+var pause_timer: bool = false
+var timespan: float = 0
 
 func _ready():
-	update_coins(GlobalObjects.current_coins)	
+	update_coins(GameObjectManager.player_data.coins)
 
 func update_level(level: int):
 	levelLabel.text = "level " + str(level)
@@ -24,15 +22,17 @@ func update_coins(coin: int):
 	tween.tween_property(coin_label, "scale", coin_label.scale + Vector2( 0.2, 0.2), 0.1).set_ease(Tween.EASE_IN)
 	tween.tween_property(coin_label, "scale", coin_label.scale, 0.1).set_ease(Tween.EASE_OUT).set_delay(0.1)
 
+func _set_font_color(new_color: Color):
+	coin_label.add_color_override("font_color", new_color)
+	
+func reset_timer():
+	timespan = 0
+	
 func _process(delta):
-	time_elapsed += delta
-
-	# Convert the elapsed time to minutes, seconds, and tenths of a second
-	minutes = int(time_elapsed) / 60
-	seconds = int(time_elapsed) % 60
-	tenths = int((time_elapsed - int(time_elapsed)) * 10)  # Tenths of a second
+	if pause_timer:
+		return
+	timespan += delta
 	# Set the text of the Label to display the formatted time
-	timeLabel.text = get_time()
+	timeLabel.text = Toolkit.get_time(timespan)
 
-func get_time():
-	return "Time: " + str(minutes).pad_zeros(2) + ":" + str(seconds).pad_zeros(2) + "." + str(tenths)
+
